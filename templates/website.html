@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=""UTF-8>
+        <title>Vege Recognition</title>
+        <h2>Vegetable Recognition Web App </h2>
+        <link rel="stylesheet" href="{{
+            url_for('static',filename='css/main.css')}}">
+    </head>
+    
+    <body>
+        <img src="https://www.heart.org/-/media/Images/Healthy-Living/Healthy-Eating/Superfoods.png">
+        <br>
+        <form action="submit" method="POST" enctype="multipart/form-data">
+            <br><br>
+            <p> *Upload a picture, the name and price of vegetable will be showed</p>
+            <label for="image_upload">
+                Upload A Picture:
+            </label>
+            <input type="file" id="image_upload" name="image_upload" accept=".png, .jpeg, .jpg" multiple >
+            <input type="submit" value="Submit" id="submit">
+        </form>
+            {% if prediction %}
+            <img src="{{img_path}}" height="400px" width="400px">
+	        <p class = "text-center"> Your Prediction   :  {{prediction}}</p>
+            <p class = "text-center"> Price : {{price}} </p>
+            {% endif %}
+
+    </body>
+</html>
