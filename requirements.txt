@@ -46,7 +46,7 @@ cloudpickle==2.0.0
 clyent
 colorama==0.4.4
 comtypes==1.1.10
-conda==4.13.0
+conda
 conda-build==3.21.6
 conda-content-trust==0+unknown
 conda-pack==0.6.0
