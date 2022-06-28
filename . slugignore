@@ -1,8 +1,4 @@
-*.jpg
-*.png
-*.csv
-spec
-doc
-/tmp/cache
-/node_modules
-/.cache/yarn
+*.psd
+*.pdf
+/test
+/spec
