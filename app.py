@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import pandas as pd
+import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 import numpy as np
 from keras.models import load_model
@@ -15,7 +16,7 @@ labels = {0: 'Choy Sum', 1: 'Coriander', 2: 'Cucumber', 3: 'Garlic', 4: 'Green C
           16: 'Yellow Holland Onion'}
 
 #load price data
-vege_price = pd.read_csv(r'D:\BingQian.docx\UMS\YEAR 2 SEM 4\MAD\Group Assignment\vege\Price dataset\vg_price.csv')
+vege_price = pd.read_csv("https://raw.githubusercontent.com/bq0722/VgPrice_Pred_App/main/Price%20dataset/vg_price.csv?token=GHSAT0AAAAAABV7CO5SYVO4HFW66WUFSLCEYV4WGFQ")
 
 # function to get price range
 def get_price_range(vege):
