@@ -16,7 +16,7 @@ labels = {0: 'Choy Sum', 1: 'Coriander', 2: 'Cucumber', 3: 'Garlic', 4: 'Green C
           16: 'Yellow Holland Onion'}
 
 #load price data
-vege_price = pd.read_csv("https://raw.githubusercontent.com/bq0722/VgPrice_Pred_App/main/Price%20dataset/vg_price.csv?token=GHSAT0AAAAAABV7CO5SYVO4HFW66WUFSLCEYV4WGFQ")
+vege_price = pd.read_csv("https://raw.githubusercontent.com/bq0722/VgPrice_Pred_App/main/Price%20dataset/vg_price.csv")
 
 # function to get price range
 def get_price_range(vege):
