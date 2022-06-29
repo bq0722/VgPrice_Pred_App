@@ -1,3 +1,4 @@
 *.csv
 spec
 vege_model.h5
+static
