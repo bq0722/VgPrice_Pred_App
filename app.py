@@ -52,7 +52,7 @@ def main():
 def submit():
     img = request.files['image_upload']
 
-    img_path = "static/" + img.filename
+    img_path =  img.filename
     img.save(img_path)
 
     p = processed_img(img_path)
