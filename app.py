@@ -4,8 +4,27 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 import numpy as np
 from keras.models import load_model
-import requests
 from PIL import Image
+import pyrebase
+
+# for uploading and downloading of image to cloud database
+config = {
+  "apiKey": "AIzaSyCFtWj8lMsvAFcSw2c8uCNRLo44zQhuY4k",
+  "authDomain": "vege-image-project.firebaseapp.com",
+  "projectId": "vege-image-project",
+  "storageBucket": "vege-image-project.appspot.com",
+  "messagingSenderId": "476931126209",
+  "appId": "1:476931126209:web:b710a85a2747c5fde37540",
+  "measurementId": "G-SQTBN3Z860",
+  "databaseURL":"https://console.firebase.google.com/project/vege-image-project/storage/vege-image-project.appspot.com/files"
+}
+
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
+path_on_cloud = "vege images/"
+
+
+
 
 # laod model
 model = load_model('vege_model.h5')
@@ -18,7 +37,6 @@ labels = {0: 'Choy Sum', 1: 'Coriander', 2: 'Cucumber', 3: 'Garlic', 4: 'Green C
 
 #load price data
 vege_price = pd.read_csv("https://raw.githubusercontent.com/bq0722/VgPrice_Pred_App/main/Price%20dataset/vg_price.csv")
-
 # function to get price range
 def get_price_range(vege):
     min_price = round(vege_price.avg_min[vege_price.vege_name == vege].iloc[0],2)
@@ -28,8 +46,8 @@ def get_price_range(vege):
     return price_range
 
 # resize the image and predict the image
-def processed_img(img_path):
-    img=load_img(img_path,target_size=(224,224,3))
+def processed_img(img_name):
+    img=load_img(img_name,target_size=(224,224,3))
     img=img_to_array(img)
     img=img/255
     img=np.expand_dims(img,[0])
@@ -52,16 +70,25 @@ def main():
 @app.route('/submit',methods=['POST'])
 def submit():
     img = request.files['image_upload']
-
-    img_path =  img.filename
-    img.save(img_path)
-
-    p = processed_img(img_path)
+    img_name = img.filename
+    img.save(img_name)
+    #predict image
+    p = processed_img(img_name)
+    #predict price
     price = get_price_range(p.lower())
-    return render_template("website.html", prediction=p, price = price, img_path=img_path)
+
+    # upload to cloud database
+    img_path = path_on_cloud + img_name
+    storage.child(img_path).put(img_name)
+    #get url of image on cloud for displaying the image on website
+    img_url = storage.child(img_path).get_url(None)
+
+    return render_template("website.html", prediction=p, price = price, img_url=img_url)
 
 
 
 # Running the app
 if __name__ == '__main__':
     app.run(debug = True)
+
+
