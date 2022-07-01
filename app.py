@@ -5,6 +5,7 @@ from tensorflow.keras.preprocessing.image import load_img,img_to_array
 import numpy as np
 from keras.models import load_model
 import requests
+import pillow as pil
 
 # laod model
 model = load_model('vege_model.h5')
