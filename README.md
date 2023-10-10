@@ -3,7 +3,7 @@ An app that recognizes vegetables in an image and tells their market price (June
 
 # The App Interface
 The vegetable price prediction app is a type of web application developed using Flask in Python and deployed through Heroku:
-![Screenshot (838)](https://github.com/bq0722/VgPrice_Pred_App/assets/108153840/cb30b24c-3e25-419d-83d5-47bd91c50bfd)
+![Screenshot (838)](https://github.com/bq0722/VgPrice_Pred_App/assets/108153840/64d61bbb-9270-4b6f-aab6-b86c484e767e)
 
 Upload a vegetable image from a directory path
 ![Screenshot 2023-10-10 195023](https://github.com/bq0722/VgPrice_Pred_App/assets/108153840/13e47ee6-67c7-4806-9182-a79bf5c5eac0)
